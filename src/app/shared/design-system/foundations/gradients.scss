@@ -12,3 +12,19 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.bold-base-gradient-text {
+  background: linear-gradient(
+    90deg,
+    $blue 0%,
+    #2E1B7E 20%,
+    #7B2B8A 45%,
+    #C33B6A 70%,
+    $red 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

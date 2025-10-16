@@ -1,0 +1,22 @@
+@use './../../foundations/colors.scss' as *;
+
+.money-value { 
+    &--sm {
+        font-size: 14px;
+    }
+    &--md {
+        font-size: 18px;
+    }
+    &--lg {
+        font-size: 24px;
+    }
+    &--natural {
+        color: $blue;
+    }
+    &--negative {
+        color: $red;
+    }
+    &--gradient {
+        color: $gray-dark;
+    }
+}

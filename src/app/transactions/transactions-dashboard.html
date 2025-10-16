@@ -8,7 +8,12 @@
         </ul>
     </nav>
 </header>
+
+
+<bold-money-value [amount]="1000323213213123"  size="lg" color="gradient"></bold-money-value>
+<hr>
 @for (item of (transactions$ | async); track $index) {
     <div>{{ item | json }}</div>
     <hr>
 }
+
