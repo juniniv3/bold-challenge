@@ -1,0 +1,5 @@
+
+@for (item of (transactions$ | async); track $index) {
+    <div>{{ item | json }}</div>
+    <hr>
+}
