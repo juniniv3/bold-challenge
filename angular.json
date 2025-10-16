@@ -25,6 +25,12 @@
                 "glob": "**/*",
                 "input": "public"
               }
+              ,
+              {
+                "glob": "**/*",
+                "input": "src/app/shared/design-system/assets",
+                "output": "/assets/shared/design-system"
+              }
             ],
             "styles": [
               "src/styles.scss"

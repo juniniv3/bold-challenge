@@ -1,0 +1,23 @@
+.transactions-dashboard-header {
+    padding: 20px 30px;
+    display: flex;
+    &__image {
+        height: 60px;
+    }
+    &__nav {
+        margin-left: auto;
+        align-items: center;
+        display: inherit;
+    }
+    &__list{
+        display: flex;
+        flex-grow: 1;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        margin-right: 80px;
+    }
+}

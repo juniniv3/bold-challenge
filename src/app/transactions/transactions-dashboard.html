@@ -1,4 +1,13 @@
 
+<header class="transactions-dashboard-header bold-base-gradient">
+    <img class="transactions-dashboard-header__image" src="/assets/shared/design-system/boldLogo.png" alt="Bold company logo with bold lettering in white on a purple and pink gradient background, conveying a modern and energetic brand identity">
+    <nav class="transactions-dashboard-header__nav">
+        <ul class="transactions-dashboard-header__list">
+            <li><a class="text-light">Mi negocio</a></li>
+            <li><a class="text-light">Ayuda</a></li>
+        </ul>
+    </nav>
+</header>
 @for (item of (transactions$ | async); track $index) {
     <div>{{ item | json }}</div>
     <hr>

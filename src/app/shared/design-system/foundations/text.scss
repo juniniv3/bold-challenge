@@ -1,0 +1,28 @@
+@use './colors' as *;
+
+.text-primary {
+  font-size: 14px;
+  font-weight:400;
+  color: $font-color;
+}
+.text-secondary {
+  font-size: 14px;
+  font-weight: 400;
+  color: $font-color-gray;
+}
+.text-secondary-dark {
+  font-size: 14px;
+  font-weight: 400;
+  color: $font-color-gray-dark;
+}
+.text-light {
+  font-size: 14px;
+  font-weight: 400;
+  color: $font-color-light;
+}
+.text-bold {
+  font-weight: 600;
+}
+.text-title {
+  font-size: 18px;
+}
