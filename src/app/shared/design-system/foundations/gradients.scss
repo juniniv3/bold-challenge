@@ -1,0 +1,14 @@
+@use './colors' as *;
+
+.bold-base-gradient {
+  background: linear-gradient(
+    90deg,
+    $blue 0%,
+    #2E1B7E 20%,
+    #7B2B8A 45%,
+    #C33B6A 70%,
+    $red 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+}

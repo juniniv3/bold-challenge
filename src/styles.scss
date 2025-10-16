@@ -1,9 +1,7 @@
-$blue: #121E6C;
-$red: #EE424E;
-$gray-dark: #606060;
-$gray-light: #F3F3F3;
-$background-color: #F6F4F9;
+@use 'app/shared/design-system/foundations/index' as *;
 
 body {
   font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
 }
