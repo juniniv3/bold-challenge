@@ -8,12 +8,56 @@
         </ul>
     </nav>
 </header>
-
-
 <bold-money-value [amount]="1000323213213123"  size="lg" color="gradient"></bold-money-value>
 <hr>
-@for (item of (transactions$ | async); track $index) {
-    <div>{{ item | json }}</div>
-    <hr>
-}
+
+<section class="transactions-dashboard-table">
+    <div class="transactions-dashboard-table__header bold-base-gradient">
+        <span class="transactions-dashboard-table__title">Total ventas de {{ filterText }}</span>
+    </div>
+    <div class="transactions-dashboard-table__controls">
+        <input type="search" placeholder="Buscar" class="transactions-dashboard-table__search" [(ngModel)]="filterText">
+    </div>
+
+    <table class="transactions-dashboard-table__table ">
+        <thead>
+            <tr>
+                <th>Transacción</th>
+                <th>Fecha y hora</th>
+                <th>Método de pago</th>
+                <th>ID transacción Bold</th>
+                <th class="text-right">Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+           @for (item of (transactions$ | async); track $index) {
+            <tr [class.row-rejected]="item.status === 'REJECTED'">
+                <td class="tx-status">
+                    <span class="tx-status__label">{{ item.status === 'SUCCESSFUL' ? 'Cobro exitoso' : 'Cobro no realizado' }}</span>
+                </td>
+                <td>{{ item.createdAt | date:'dd/MM/yyyy - HH:mm:ss' }}</td>
+                <td>
+                    <div class="tx-method">
+                        <span class="tx-method__text">{{ item.paymentMethod }}</span>
+                    </div>
+                </td>
+                <td>{{ item.id }}</td>
+                <td class="text-right">
+                    <bold-money-value [amount]="item.amount" size="sm"></bold-money-value>
+                    @if(item.deduction){
+                        <br>
+                        <span>Deducción Bold</span>
+                        <br>
+                    <bold-money-value [amount]="-item.deduction" size="sm" color="negative"></bold-money-value>
+                    }
+                </td>
+            </tr>
+            
+           }
+
+        </tbody>
+    </table>
+</section>
+
+
 
