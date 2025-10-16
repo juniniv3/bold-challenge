@@ -2,14 +2,15 @@ import { Component, inject } from '@angular/core';
 import { TransactionsApi } from './services/transactions-api';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MoneyValue } from "../shared/design-system/atoms/money-value/money-value";
-import { AmountCard } from "../shared/design-system/molecules/amount-card/amount-card";
+import { MoneyValue } from '../shared/design-system/atoms/money-value/money-value';
+import { AmountCard } from '../shared/design-system/molecules/amount-card/amount-card';
+import { BoldButton } from '../shared/design-system/atoms/bold-button/bold-button';
 
 @Component({
   selector: 'app-transactions',
-  imports: [CommonModule, FormsModule, AsyncPipe, MoneyValue, AmountCard, AmountCard],
+  imports: [CommonModule, FormsModule, AsyncPipe, MoneyValue, AmountCard, AmountCard, BoldButton],
   templateUrl: './transactions-dashboard.html',
-  styleUrl: './transactions-dashboard.scss'
+  styleUrl: './transactions-dashboard.scss',
 })
 export class TransactionsDashboard {
   transactionsApi = inject(TransactionsApi);
