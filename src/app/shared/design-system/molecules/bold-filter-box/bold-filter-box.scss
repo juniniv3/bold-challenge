@@ -46,3 +46,9 @@
         cursor: pointer;
     }
 }
+
+@media (max-width: 600px){
+    .bold-filter-box__filters {
+        right: 25px;
+    }
+}

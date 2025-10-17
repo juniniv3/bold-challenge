@@ -18,7 +18,9 @@
         cursor: pointer;
         color: $font-color;
         transition: background-color 0.3s, color 0.3s;
-
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         position: relative;
         z-index: 0;
         overflow: hidden;

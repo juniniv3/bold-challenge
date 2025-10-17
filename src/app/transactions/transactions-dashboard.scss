@@ -2,7 +2,7 @@
     padding: 20px 30px;
     display: flex;
     &__image {
-        height: 60px;
+        height: 55px;
     }
     &__nav {
         margin-left: auto;
@@ -19,13 +19,11 @@
         padding: 0;
         list-style: none;
         margin-right: 80px;
-
-    
     }
 }
-.transactions-dashboard-table,
-.transactions-table {
+.transactions-dashboard-table {
     margin: 40px;
+    margin-top: 0;
 }
 
 .transactions-dashboard-table__header {
@@ -53,6 +51,44 @@
     gap: 20px;
 }
 
+@media (max-width: 810px) {
+  
+    .transactions-dashboard-filters {
+        flex-direction: column;
+        > .transactions-dashboard-filters__controls {
+            flex-grow: unset;
+        }
+        > bold-amount-card {
+            max-width: unset;
+        }
+    }
+
+    .transactions-dashboard-header__list {
+        margin-right: unset;
+    }
+
+    .transactions-dashboard-header__image {
+        height: 50px;
+    }
+}
+
+
+@media (max-width: 600px){
+    .transactions-dashboard-filters {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .transactions-dashboard-table {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .transactions-dashboard-header__image {
+        height: 40px;
+    }
+}
+
+
 .transactions-dashboard-table__controls {
     display: flex;
     justify-content: flex-end;
@@ -62,7 +98,7 @@
         left: 10px;
         top: 50%;
         transform: translateY(-50%);
-        pointer-events: none; /* Icon doesn't block typing */
+        pointer-events: none;
     }
     .transactions-dashboard-table__search{
         border: none;
@@ -74,9 +110,15 @@
     }
 }
 
+.transactions-dashboard-table__table__wrapper{
+   width: 100%;
+   overflow-x: auto; /* Habilita scroll horizontal */
+}
+
 .transactions-dashboard-table__table {
     width: 100% ;
     border-collapse: collapse;
+    background-color: #fff;
 
     th, td {
         padding: 12px 15px;
