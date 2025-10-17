@@ -1,0 +1,17 @@
+.bold-payment-logo {
+  display: inline-block;
+  object-fit: contain;
+
+  &--sm {
+    height: 30px;
+    width: auto;
+  }
+  &--md {
+    height: 45px;
+    width: auto;
+  }
+  &--lg {
+    height: 60px;
+    width: auto;
+  }
+}
