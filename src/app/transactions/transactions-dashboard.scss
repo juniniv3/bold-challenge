@@ -19,6 +19,8 @@
         padding: 0;
         list-style: none;
         margin-right: 80px;
+
+    
     }
 }
 .transactions-dashboard-table,
@@ -54,10 +56,19 @@
 .transactions-dashboard-table__controls {
     display: flex;
     justify-content: flex-end;
+    position: relative;
+    bold-icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none; /* Icon doesn't block typing */
+    }
     .transactions-dashboard-table__search{
         border: none;
         border-radius: 5px;
         padding: 12px 12px;
+        padding-left: 38px;
         font-size: 14px;
         width: 100%;
     }
@@ -75,24 +86,18 @@
     th {
         text-align: left;
     }
-    .tx-status {
-        display: flex;
-        align-items: center;
-        &__icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        &__label {
-            font-weight: bold;
-        }
-    }
 
     .transactions-dashboard-table__table__method {
         display: flex;
         align-items: center;
         gap: 20px;
+    }
+
+    .transactions-dashboard-table__table__transaction {
+        display: flex;
+        bold-icon {
+            margin-right: 10px;
+        }
     }
 
 }

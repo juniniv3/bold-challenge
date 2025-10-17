@@ -4,10 +4,10 @@ import { CommonModule, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MoneyValue } from '../shared/design-system/atoms/money-value/money-value';
 import { AmountCard } from '../shared/design-system/molecules/amount-card/amount-card';
-import { BoldButton } from '../shared/design-system/atoms/bold-button/bold-button';
 import { BoldSegmentedTabs } from '../shared/design-system/molecules/bold-segmented-tabs/bold-segmented-tabs';
 import { BoldFilterBox } from "../shared/design-system/molecules/bold-filter-box/bold-filter-box";
 import { BoldPaymentLogo } from "../shared/design-system/atoms/bold-payment-logo/bold-payment-logo";
+import { BoldIcon } from '../shared/design-system/atoms/bold-icon/bold-icon';
 
 @Component({
   selector: 'app-transactions',
@@ -18,10 +18,10 @@ import { BoldPaymentLogo } from "../shared/design-system/atoms/bold-payment-logo
     MoneyValue,
     AmountCard,
     AmountCard,
-    BoldButton,
     BoldSegmentedTabs,
     BoldFilterBox,
-    BoldPaymentLogo
+    BoldPaymentLogo,
+    BoldIcon
 ],
   templateUrl: './transactions-dashboard.html',
   styleUrl: './transactions-dashboard.scss',
@@ -40,4 +40,8 @@ export class TransactionsDashboard {
     { label: 'Cobro con link de pago', id: 'link', checked: false },
     { label: 'Ver todos', id: 'all', checked: false },
   ]
+
+  salesIcon(salesType: string): string{
+    return salesType === 'TERMINAL' ?  'mobile' : 'link';
+  }
 }

@@ -4,9 +4,9 @@
   (mouseleave)="changeFiltersVisibility(false)"
 >
   @if (showFilters) {
-  <div class="bold-filter-box__filters">
+  <div class="bold-filter-box__filters" (click)="changeFiltersVisibility(false)">
     <span class="text-primary text-bold">{{ title }}</span>
-
+    <bold-icon name="close" size="md"></bold-icon>
     @for (filter of filters; track $index) {
     <div class="bold-filter-box__filter">
       <input type="checkbox" [id]="filter.id" name="choices" [value]="filter.id" [checked]="filter.checked" />
@@ -15,12 +15,15 @@
     }
     <bold-button
       label="Aplicar"
-      label="Aplicar"
       (click)="changeFiltersVisibility(false)"
     ></bold-button>
   </div>
   }
   <div class="bold-filter-box__no-filters">
     <span class="text-primary text-bold">{{ title }}</span>
+    <bold-icon
+      name="filter"
+      size="md"
+    ></bold-icon>
   </div>
 </div>

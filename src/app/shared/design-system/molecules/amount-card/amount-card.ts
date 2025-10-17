@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CustomCurrencyPipe } from '../../../pipes/custom-currency-pipe';
 import { MoneyValue } from '../../atoms/money-value/money-value';
+import { BoldIcon } from "../../atoms/bold-icon/bold-icon";
 
 @Component({
   selector: 'bold-amount-card',
-  imports: [CustomCurrencyPipe, MoneyValue],
+  imports: [ MoneyValue, BoldIcon],
   templateUrl: './amount-card.html',
   styleUrl: './amount-card.scss',
   standalone: true,

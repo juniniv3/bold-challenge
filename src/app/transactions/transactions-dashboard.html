@@ -4,7 +4,7 @@
     <nav class="transactions-dashboard-header__nav">
         <ul class="transactions-dashboard-header__list">
             <li><a class="text-light">Mi negocio</a></li>
-            <li><a class="text-light">Ayuda</a></li>
+            <li><a class="text-light transactions-dashboard-header__list__help">Ayuda <bold-icon name="help" size="sm"></bold-icon></a></li>
         </ul>
     </nav>
 </header>
@@ -37,7 +37,8 @@
         <span class="transactions-dashboard-table__title">Total ventas de {{ filterText }}</span>
     </div>
     <div class="transactions-dashboard-table__controls">
-        <input type="search" placeholder="Buscar" class="transactions-dashboard-table__search" [(ngModel)]="filterText">
+        <bold-icon name="search" size="md"></bold-icon>
+        <input type="text" placeholder="Buscar" class="transactions-dashboard-table__search" [(ngModel)]="filterText">
     </div>
 
     <table class="transactions-dashboard-table__table ">
@@ -53,14 +54,15 @@
         <tbody>
            @for (item of (transactions$ | async); track $index) {
             <tr [class.row-rejected]="item.status === 'REJECTED'">
-                <td class="tx-status">
-                    <span class="tx-status__label">{{ item.status === 'SUCCESSFUL' ? 'Cobro exitoso' : 'Cobro no realizado' }}</span>
+                <td class="transactions-dashboard-table__table__transaction">
+                    <bold-icon [name]="salesIcon(item.salesType)" [size]="'sm'"></bold-icon>
+                    <span class="text-primary">{{ item.status === 'SUCCESSFUL' ? 'Cobro exitoso' : 'Cobro no realizado' }}</span>
                 </td>
                 <td>{{ item.createdAt | date:'dd/MM/yyyy - HH:mm:ss' }}</td>
                 <td>
                     <div class="transactions-dashboard-table__table__method">
                         <bold-payment-logo [brand]="item.paymentMethod === 'CARD' ? item.franchise : item.paymentMethod" [size]="'sm'" ></bold-payment-logo>
-                        <span class="text-secondary-dark">**** {{ item.transactionReference }}</span>
+                        <span class="text-secondary-dark"> {{item.paymentMethod !== 'PSE' ? '**** ' + item.transactionReference : 'PSE'}}</span>
                     </div>
                 </td>
                 <td>{{ item.id }}</td>

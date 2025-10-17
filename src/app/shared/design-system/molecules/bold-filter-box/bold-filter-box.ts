@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { Filter } from './bold-filter-box.model';
 import { FormGroup } from '@angular/forms';
 import { BoldButton } from "../../atoms/bold-button/bold-button";
+import { BoldIcon } from "../../atoms/bold-icon/bold-icon";
 
 @Component({
   selector: 'bold-filter-box',
-  imports: [BoldButton],
+  imports: [BoldButton, BoldIcon],
   templateUrl: './bold-filter-box.html',
   styleUrl: './bold-filter-box.scss',
   standalone: true,
