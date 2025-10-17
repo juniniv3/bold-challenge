@@ -154,7 +154,6 @@ export class TransactionsDashboard implements OnInit {
   filterTransactionsSearch(transactions: Transaction[] | null): Transaction[] | null {
     if (!transactions) return null;
     const searchText = this.globalFilter().filterText.toLowerCase();
-    console.log('Search Text:', searchText);
     if (!searchText) return transactions;
 
     return transactions.filter(item =>
