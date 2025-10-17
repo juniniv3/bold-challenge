@@ -1,5 +1,7 @@
 
 @let transactions = transactions$ | async;
+@let filteredTransactions = filterTransactions(transactions);
+@let filteredTransactionsSearch = filterTransactionsSearch(filteredTransactions);
 
 <header class="transactions-dashboard-header bold-base-gradient">
     <img class="transactions-dashboard-header__image" src="/assets/shared/design-system/boldLogo.png" alt="Bold company logo with bold lettering in white on a purple and pink gradient background, conveying a modern and energetic brand identity">
@@ -14,7 +16,7 @@
 <div class="transactions-dashboard-filters">
     <bold-amount-card
         [title]="'Total ventas de ' + selectedPeriodTab"
-        [amount]="totalAmount(transactions)"
+        [amount]="totalAmount(filteredTransactions)"
         [description]="selectedPeriodTabDescription">
     </bold-amount-card>
 
@@ -40,7 +42,7 @@
     </div>
     <div class="transactions-dashboard-table__controls">
         <bold-icon name="search" size="md"></bold-icon>
-        <input type="text" placeholder="Buscar" class="transactions-dashboard-table__search" [(ngModel)]="filterText">
+        <input type="text" placeholder="Buscar" class="transactions-dashboard-table__search" [(ngModel)]="globalFilter().filterText">
     </div>
 
     <table class="transactions-dashboard-table__table ">
@@ -54,7 +56,7 @@
             </tr>
         </thead>
         <tbody>
-           @for (item of transactions; track $index) {
+           @for (item of filteredTransactionsSearch; track $index) {
             <tr [class.row-rejected]="item.status === 'REJECTED'">
                 <td class="transactions-dashboard-table__table__transaction">
                     <bold-icon [name]="salesIcon(item.salesType)" [size]="'sm'"></bold-icon>

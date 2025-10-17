@@ -32,5 +32,13 @@ export class BoldFilterBox implements OnInit {
   changeFiltersVisibility(show: boolean) {
     this.showFilters = show;
   }
-  
+
+  onFilterChange(filterId: string) {
+    const filter = this.filters.find(f => f.id === filterId);
+    if (filter) {
+      filter.checked = !filter.checked;
+      this.showFilter(filter.id);
+    }
+  }
+
 }

@@ -48,14 +48,13 @@ export class TransactionsDashboard {
       { label: this.datePipe.transform(this.date, 'MMMM')!, id: 'month', selected: false , description: this.datePipe.transform(this.date, 'MMMM yyyy')! },
     ],
     filters: [
-      { label: 'Cobro con datáfono', id: 'datafono', checked: true },
-      { label: 'Cobro con link de pago', id: 'link', checked: false },
+      { label: 'Cobro con datáfono', id: 'TERMINAL', checked: true },
+      { label: 'Cobro con link de pago', id: 'PAYMENT_LINK', checked: false },
       { label: 'Ver todos', id: 'all', checked: false },
     ],
     filterText: '',
   });
 
-  filterText = '';
 
   totalAmount(transactions: Transaction[] | null): number {
     if (!transactions) return 0;
@@ -74,5 +73,63 @@ export class TransactionsDashboard {
 
   salesIcon(salesType: string): string {
     return salesType === 'TERMINAL' ? 'mobile' : 'link';
+  }
+
+  filterTransactions(transactions: Transaction[] | null): Transaction[] | null {
+    if (!transactions) return null;
+
+    let filteredTransactions = transactions;
+    if (this.globalFilter().filters.some(f => f.checked && f.id !== 'all')) {
+      filteredTransactions = filteredTransactions.filter((item) =>
+        this.globalFilter().filters.some(f => f.checked && f.id === item.salesType)
+      );
+    }
+    let selectedTab = this.globalFilter().tabs.find(t => t.selected);
+    if (selectedTab?.id == 'today') {
+      filteredTransactions = filteredTransactions.filter(item =>
+        item.createdAt >= new Date().setHours(0, 0, 0, 0) &&
+        item.createdAt < new Date().setHours(23, 59, 59, 999)
+      );
+    }
+    if (selectedTab?.id == 'week') {
+      const startOfWeek = new Date();
+      startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay());
+      startOfWeek.setHours(0, 0, 0, 0);
+      const endOfWeek = new Date();
+      endOfWeek.setDate(endOfWeek.getDate() + (6 - endOfWeek.getDay()));
+      endOfWeek.setHours(23, 59, 59, 999);
+
+      filteredTransactions = filteredTransactions.filter(item =>
+        item.createdAt >= startOfWeek.getTime() &&
+        item.createdAt <= endOfWeek.getTime()
+      );
+    }
+    if (selectedTab?.id == 'month') {
+      const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+      const endOfMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0, 23, 59, 59, 999);
+
+      filteredTransactions = filteredTransactions.filter(item =>
+        item.createdAt >= startOfMonth.getTime() &&
+        item.createdAt <= endOfMonth.getTime()
+      );
+    }
+    return filteredTransactions;
+  }
+
+  filterTransactionsSearch(transactions: Transaction[] | null): Transaction[] | null {
+    if (!transactions) return null;
+    const searchText = this.globalFilter().filterText.toLowerCase();
+    console.log('Search Text:', searchText);
+    if (!searchText) return transactions;
+
+    return transactions.filter(item =>
+      item.id.toLowerCase().includes(searchText) ||
+      item.paymentMethod.toLowerCase().includes(searchText) ||
+      item.status.toLowerCase().includes(searchText) ||
+      item.franchise?.toLowerCase().includes(searchText) ||
+      item.transactionReference.toString().includes(searchText) ||
+      item.amount.toString().includes(searchText) ||
+      (item.deduction?.toString().includes(searchText) || false)
+    ) || null;
   }
 }
