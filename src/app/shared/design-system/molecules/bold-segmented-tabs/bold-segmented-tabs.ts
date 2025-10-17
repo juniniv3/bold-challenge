@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tab } from './bold-segmented-tabs.model';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'bold-segmented-tabs',
-  imports: [],
+  imports: [TitleCasePipe],
+  providers: [],
   templateUrl: './bold-segmented-tabs.html',
   styleUrl: './bold-segmented-tabs.scss',
   standalone: true,
@@ -12,10 +14,11 @@ import { Tab } from './bold-segmented-tabs.model';
 export class BoldSegmentedTabs {
   @Input() tabs: Tab[] = [];
   @Input() selectedTab: string = '';
-  @Output() changeTab = new EventEmitter<string>();
+  @Output() changeTab = new EventEmitter<Tab[]>();
 
-  selectTab(tabValue: string) {
-    this.selectedTab = tabValue;
-    this.changeTab.emit(tabValue);
+  selectTab(idSelected: string) {
+    this.selectedTab = idSelected;
+    this.tabs.forEach(tab => tab.selected = tab.id === idSelected);
+    this.changeTab.emit(this.tabs);
   }
 }

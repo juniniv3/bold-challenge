@@ -1,4 +1,6 @@
 
+@let transactions = transactions$ | async;
+
 <header class="transactions-dashboard-header bold-base-gradient">
     <img class="transactions-dashboard-header__image" src="/assets/shared/design-system/boldLogo.png" alt="Bold company logo with bold lettering in white on a purple and pink gradient background, conveying a modern and energetic brand identity">
     <nav class="transactions-dashboard-header__nav">
@@ -11,20 +13,20 @@
 
 <div class="transactions-dashboard-filters">
     <bold-amount-card
-        title="Total ventas de junio"
-        [amount]="1000323213213123"
-        description="Junio 2025">
+        [title]="'Total ventas de ' + selectedPeriodTab"
+        [amount]="totalAmount(transactions)"
+        [description]="selectedPeriodTabDescription">
     </bold-amount-card>
 
     <div class="transactions-dashboard-filters__controls">
         <bold-segmented-tabs
-            [tabs]="tabs"
+            [tabs]="globalFilter().tabs"
             [selectedTab]="'All'"
             >
         </bold-segmented-tabs>
         <bold-filter-box
             title="Filtrar"
-            [filters]="filters"
+            [filters]="globalFilter().filters"
             >
         </bold-filter-box>
     </div>
@@ -34,7 +36,7 @@
 
 <section class="transactions-dashboard-table">
     <div class="transactions-dashboard-table__header bold-base-gradient">
-        <span class="transactions-dashboard-table__title">Total ventas de {{ filterText }}</span>
+        <span class="transactions-dashboard-table__title">Total ventas de {{ selectedPeriodTab }}</span>
     </div>
     <div class="transactions-dashboard-table__controls">
         <bold-icon name="search" size="md"></bold-icon>
@@ -52,7 +54,7 @@
             </tr>
         </thead>
         <tbody>
-           @for (item of (transactions$ | async); track $index) {
+           @for (item of transactions; track $index) {
             <tr [class.row-rejected]="item.status === 'REJECTED'">
                 <td class="transactions-dashboard-table__table__transaction">
                     <bold-icon [name]="salesIcon(item.salesType)" [size]="'sm'"></bold-icon>

@@ -1,4 +1,5 @@
 export interface Tab {
   label: string;
-  value: string;
+  id: string;
+  selected: boolean;
 }

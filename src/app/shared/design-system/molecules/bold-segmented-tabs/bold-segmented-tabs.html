@@ -2,10 +2,10 @@
   @for (tab of tabs; track $index) {
   <div
     class="bold-segmented-tabs__tab"
-    [class.bold-segmented-tabs__tab--active]="tab.value === selectedTab"
-    (click)="selectTab(tab.value)"
+    [class.bold-segmented-tabs__tab--active]="tab.selected === true"
+    (click)="selectTab(tab.id)"
   >
-    {{ tab.label }}
+    {{ tab.label | titlecase  }}
   </div>
   }
 </div>

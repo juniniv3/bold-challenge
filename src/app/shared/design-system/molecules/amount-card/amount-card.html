@@ -5,6 +5,6 @@
     </div>
     <div class="amount-card__body">
         <bold-money-value [amount]="amount" color="gradient"></bold-money-value>
-        <span class="amount-card__description">{{ description }}</span>
+        <span class="amount-card__description">{{ description | titlecase}}</span>
     </div>
 </div>
