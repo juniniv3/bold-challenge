@@ -12,6 +12,7 @@ import { Transaction } from './models/transaction.model';
 import { DatePipe } from '@angular/common';
 import { Tab } from '../shared/design-system/molecules/bold-segmented-tabs/bold-segmented-tabs.model';
 import { Filter } from '../shared/design-system/molecules/bold-filter-box/bold-filter-box.model';
+import { SidePanel } from "../shared/design-system/molecules/bold-side-panel/bold-side-panel";
 
 @Component({
   selector: 'app-transactions',
@@ -26,7 +27,8 @@ import { Filter } from '../shared/design-system/molecules/bold-filter-box/bold-f
     BoldFilterBox,
     BoldPaymentLogo,
     BoldIcon,
-  ],
+    SidePanel
+],
   providers: [DatePipe, { provide: LOCALE_ID, useValue: 'es-CO' }],
   templateUrl: './transactions-dashboard.html',
   styleUrl: './transactions-dashboard.scss',
@@ -35,6 +37,7 @@ export class TransactionsDashboard implements OnInit {
   transactionsApi = inject(TransactionsApi);
   datePipe = inject(DatePipe);
   transactions$ = this.transactionsApi.getTransactions();
+  selectedTransaction: Transaction | null = null;
 
   date: Date = new Date();
   formatedDate = new Intl.DateTimeFormat('es-CO', {
@@ -84,6 +87,10 @@ export class TransactionsDashboard implements OnInit {
     }));
   }
   
+  onClosePanel(){
+    this.selectedTransaction = null;
+  }
+
   totalAmount(transactions: Transaction[] | null): number {
     if (!transactions) return 0;
     let total = 0;

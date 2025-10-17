@@ -1,0 +1,9 @@
+
+@if (showPanel) {
+    <div class="side-panel__overlay" (click)="hidePanel()">
+        <div class="side-panel__content" (click)="$event.stopPropagation()">
+            <bold-icon size="md" name="close" (click)="hidePanel()"></bold-icon>
+            <ng-content></ng-content>
+        </div>
+    </div>
+}

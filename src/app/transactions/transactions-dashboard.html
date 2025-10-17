@@ -60,7 +60,7 @@
             </thead>
             <tbody>
                @for (item of filteredTransactionsSearch; track $index) {
-                <tr [class.row-rejected]="item.status === 'REJECTED'">
+                <tr (click)="selectedTransaction = item">
                     <td class="transactions-dashboard-table__table__transaction">
                         <bold-icon [name]="salesIcon(item.salesType)" [size]="'sm'"></bold-icon>
                         <span class="text-primary">{{ item.status === 'SUCCESSFUL' ? 'Cobro exitoso' : 'Cobro no realizado' }}</span>
@@ -85,7 +85,6 @@
                 </tr>
                 
                }
-    
             </tbody>
         </table>
     </div>
@@ -93,3 +92,38 @@
 
 
 
+<bold-side-panel [showPanel]="selectedTransaction? true: false" (closePanel)="onClosePanel()">
+    <div class="transactions-dashboard__side-panel">
+        <bold-icon size="lg" [name]="selectedTransaction?.status ==='SUCCESSFUL'? 'success': 'error'"></bold-icon>
+        <span class="text-bold">{{selectedTransaction?.status === 'SUCCESSFUL' ? '¡Cobro exitoso!' : '¡Cobro no realizado!'}}</span>
+        <bold-money-value class="text-bold" [amount]="selectedTransaction?.amount || 0" ></bold-money-value>
+        <span class="text-secondary">{{selectedTransaction?.createdAt | date:'dd/MM/yyyy - HH:mm:ss'}}</span>
+        <div class="transactions-dashboard__side-panel__info">
+            <div>
+                <span class="text-secondary">ID transacción bold</span>
+                <span>{{selectedTransaction?.id}}</span>
+            </div>
+            <div>
+                <span class="text-secondary" >Deducción Bold</span>
+                <bold-money-value [amount]="-(selectedTransaction?.deduction || 0)" size="sm" color="negative"></bold-money-value>
+            </div>
+            <div class="transactions-dashboard__side-panel__info__divider">
+                
+            </div>
+            <div>
+                <span class="text-secondary">Método de pago</span>
+                <div>
+                    <bold-payment-logo [brand]="(selectedTransaction?.paymentMethod === 'CARD' ? selectedTransaction?.franchise : selectedTransaction?.paymentMethod) || ''" [size]="'sm'" ></bold-payment-logo>
+                    <span class="text-secondary-dark"> {{selectedTransaction?.paymentMethod !== 'PSE' ? '**** ' + selectedTransaction?.transactionReference : 'PSE'}}</span>
+                </div>
+            </div>
+            <div>
+                <span class="text-secondary">Tipo de pago</span>
+                <div>
+                    <bold-icon [name]="salesIcon(selectedTransaction?.salesType || '')" [size]="'sm'"></bold-icon>
+                    <span class="text-secondary-dark text-bold">{{selectedTransaction?.salesType === 'PAYMENT_LINK'? 'Link de pagos': 'Dispositivo'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</bold-side-panel>

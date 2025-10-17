@@ -1,0 +1,35 @@
+@use './../../foundations/colors.scss' as *;
+
+.side-panel__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 10;
+}
+
+.side-panel__content {
+  flex-grow: 1;
+  display: inherit;
+  max-width: 400px;
+  margin-left: auto;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
+  padding: 40px 50px;
+  position: relative;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  > bold-icon {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+  }
+}
