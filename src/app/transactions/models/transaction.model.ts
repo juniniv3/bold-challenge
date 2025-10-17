@@ -7,6 +7,6 @@ export interface Transaction {
 	transactionReference: number;
 	amount: number;
 	deduction?: number;
-	franchise?: string;
+	franchise: string;
 }
 

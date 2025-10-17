@@ -7,6 +7,7 @@ import { AmountCard } from '../shared/design-system/molecules/amount-card/amount
 import { BoldButton } from '../shared/design-system/atoms/bold-button/bold-button';
 import { BoldSegmentedTabs } from '../shared/design-system/molecules/bold-segmented-tabs/bold-segmented-tabs';
 import { BoldFilterBox } from "../shared/design-system/molecules/bold-filter-box/bold-filter-box";
+import { BoldPaymentLogo } from "../shared/design-system/atoms/bold-payment-logo/bold-payment-logo";
 
 @Component({
   selector: 'app-transactions',
@@ -19,7 +20,8 @@ import { BoldFilterBox } from "../shared/design-system/molecules/bold-filter-box
     AmountCard,
     BoldButton,
     BoldSegmentedTabs,
-    BoldFilterBox
+    BoldFilterBox,
+    BoldPaymentLogo
 ],
   templateUrl: './transactions-dashboard.html',
   styleUrl: './transactions-dashboard.scss',
@@ -34,8 +36,8 @@ export class TransactionsDashboard {
     { label: 'Junio', value: 'june' },
   ];
   filters = [
-    { label: 'Todas', id: 'all', checked: true },
-    { label: 'Enviadas', id: 'sent', checked: false },
-    { label: 'Recibidas', id: 'received', checked: false },
+    { label: 'Cobro con datáfono', id: 'datafono', checked: true },
+    { label: 'Cobro con link de pago', id: 'link', checked: false },
+    { label: 'Ver todos', id: 'all', checked: false },
   ]
 }

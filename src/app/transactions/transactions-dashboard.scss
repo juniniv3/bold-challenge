@@ -89,17 +89,10 @@
         }
     }
 
-    .tx-method {
+    .transactions-dashboard-table__table__method {
         display: flex;
         align-items: center;
-        &__logo {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-        }
-        &__text {
-            font-weight: bold;
-        }
+        gap: 20px;
     }
 
 }

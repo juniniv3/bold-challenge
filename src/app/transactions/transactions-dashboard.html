@@ -31,10 +31,6 @@
 
 </div>
 
-<!-- Disabled button as per design 
- 
-<bold-button label="Enviar" [disabled]="true"> </bold-button>
--->
 
 <section class="transactions-dashboard-table">
     <div class="transactions-dashboard-table__header bold-base-gradient">
@@ -62,8 +58,9 @@
                 </td>
                 <td>{{ item.createdAt | date:'dd/MM/yyyy - HH:mm:ss' }}</td>
                 <td>
-                    <div class="tx-method">
-                        <span class="tx-method__text">{{ item.paymentMethod }}</span>
+                    <div class="transactions-dashboard-table__table__method">
+                        <bold-payment-logo [brand]="item.paymentMethod === 'CARD' ? item.franchise : item.paymentMethod" [size]="'sm'" ></bold-payment-logo>
+                        <span class="text-secondary-dark">**** {{ item.transactionReference }}</span>
                     </div>
                 </td>
                 <td>{{ item.id }}</td>
