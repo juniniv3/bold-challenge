@@ -24,11 +24,13 @@
         <bold-segmented-tabs
             [tabs]="globalFilter().tabs"
             [selectedTab]="'All'"
+            (changeTab)="onTabSelected($event)"
             >
         </bold-segmented-tabs>
         <bold-filter-box
             title="Filtrar"
             [filters]="globalFilter().filters"
+            (changeSomeFilter)="onFilterChange($event)"
             >
         </bold-filter-box>
     </div>

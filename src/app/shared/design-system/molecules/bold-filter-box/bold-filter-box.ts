@@ -12,22 +12,15 @@ import { BoldIcon } from "../../atoms/bold-icon/bold-icon";
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoldFilterBox implements OnInit {
+export class BoldFilterBox  {
   @Input() title: string = '';
   @Input() filters: Filter[] = [];
-  @Output() changeSomeFilter = new EventEmitter<string>();
+  @Output() changeSomeFilter = new EventEmitter<Filter[]>();
 
   showFilters: boolean = false;
 
   form!: FormGroup;
 
-  ngOnInit() {
-    this.form = new FormGroup({});
-  }
-
-  showFilter(filterValue: string) {
-    this.changeSomeFilter.emit(filterValue);
-  }
 
   changeFiltersVisibility(show: boolean) {
     this.showFilters = show;
@@ -37,7 +30,7 @@ export class BoldFilterBox implements OnInit {
     const filter = this.filters.find(f => f.id === filterId);
     if (filter) {
       filter.checked = !filter.checked;
-      this.showFilter(filter.id);
+      this.changeSomeFilter.emit(this.filters);
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, inject, LOCALE_ID, signal } from '@angular/core';
+import { Component, inject, LOCALE_ID, signal, effect, OnInit } from '@angular/core';
 import { TransactionsApi } from './services/transactions-api';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +10,8 @@ import { BoldPaymentLogo } from '../shared/design-system/atoms/bold-payment-logo
 import { BoldIcon } from '../shared/design-system/atoms/bold-icon/bold-icon';
 import { Transaction } from './models/transaction.model';
 import { DatePipe } from '@angular/common';
+import { Tab } from '../shared/design-system/molecules/bold-segmented-tabs/bold-segmented-tabs.model';
+import { Filter } from '../shared/design-system/molecules/bold-filter-box/bold-filter-box.model';
 
 @Component({
   selector: 'app-transactions',
@@ -29,7 +31,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './transactions-dashboard.html',
   styleUrl: './transactions-dashboard.scss',
 })
-export class TransactionsDashboard {
+export class TransactionsDashboard implements OnInit {
   transactionsApi = inject(TransactionsApi);
   datePipe = inject(DatePipe);
   transactions$ = this.transactionsApi.getTransactions();
@@ -41,8 +43,8 @@ export class TransactionsDashboard {
     year: 'numeric',
   }).format(this.date);
 
-  globalFilter = signal({
-    tabs: [ 
+  globalFilter =  signal({
+  tabs: [ 
       { label: 'hoy', id: 'today', selected: true, description: this.formatedDate },
       { label: 'esta semana', id: 'week', selected: false , description: 'esta semana'},
       { label: this.datePipe.transform(this.date, 'MMMM')!, id: 'month', selected: false , description: this.datePipe.transform(this.date, 'MMMM yyyy')! },
@@ -55,7 +57,33 @@ export class TransactionsDashboard {
     filterText: '',
   });
 
+  constructor() {
+    effect(() => {
+      localStorage.setItem('globalFilter', JSON.stringify(this.globalFilter()));
+    });
+  }
 
+  ngOnInit(): void {
+    const storedFilter = localStorage.getItem('globalFilter');
+    if (storedFilter) {
+      this.globalFilter.set(JSON.parse(storedFilter));
+    }
+  }
+
+  onTabSelected(tabs: Tab[] ) {
+    this.globalFilter.update((current) => ({
+      ...current,
+      tabs: tabs,
+    }));
+  }
+
+  onFilterChange(filters: Filter[]) {
+    this.globalFilter.update((current) => ({
+      ...current,
+      filters: filters,
+    }));
+  }
+  
   totalAmount(transactions: Transaction[] | null): number {
     if (!transactions) return 0;
     let total = 0;
