@@ -1,0 +1,26 @@
+<div
+  class="bold-filter-box"
+  (mouseenter)="changeFiltersVisibility(true)"
+  (mouseleave)="changeFiltersVisibility(false)"
+>
+  @if (showFilters) {
+  <div class="bold-filter-box__filters">
+    <span class="text-primary text-bold">{{ title }}</span>
+
+    @for (filter of filters; track $index) {
+    <div class="bold-filter-box__filter">
+      <input type="checkbox" [id]="filter.id" name="choices" [value]="filter.id" [checked]="filter.checked" />
+      <label [for]="filter.id">{{ filter.label }}</label>
+    </div>
+    }
+    <bold-button
+      label="Aplicar"
+      label="Aplicar"
+      (click)="changeFiltersVisibility(false)"
+    ></bold-button>
+  </div>
+  }
+  <div class="bold-filter-box__no-filters">
+    <span class="text-primary text-bold">{{ title }}</span>
+  </div>
+</div>

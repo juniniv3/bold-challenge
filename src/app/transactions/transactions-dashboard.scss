@@ -32,6 +32,25 @@
     border-top-right-radius: 15px;
     color: white;
 }
+.transactions-dashboard-filters {
+    display: flex;
+    padding: 40px;
+    > bold-amount-card {
+        flex-grow: 1;
+        max-width: 400px;
+    }
+    > .transactions-dashboard-filters__controls {
+        flex-grow: 2;
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        > bold-filter-box {
+            margin-left: auto;
+        }
+    }
+    gap: 20px;
+}
+
 .transactions-dashboard-table__controls {
     display: flex;
     justify-content: flex-end;
@@ -52,27 +71,19 @@
         padding: 12px 15px;
         vertical-align: middle; /* ensure cells align to row height */
         border: 1px solid #eee;
-
-
     }
-
-
     th {
         text-align: left;
     }
-
-
     .tx-status {
         display: flex;
         align-items: center;
-
         &__icon {
             width: 20px;
             height: 20px;
             border-radius: 50%;
             margin-right: 8px;
         }
-
         &__label {
             font-weight: bold;
         }
@@ -81,13 +92,11 @@
     .tx-method {
         display: flex;
         align-items: center;
-
         &__logo {
             width: 24px;
             height: 24px;
             margin-right: 8px;
         }
-
         &__text {
             font-weight: bold;
         }

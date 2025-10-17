@@ -4,4 +4,11 @@ body {
   font-family: 'Montserrat', sans-serif;
   padding: 0;
   margin: 0;
+  background-color: $background-color;
+}
+
+input[type="checkbox"]:checked {
+  background: $blue;
+  border-color: $blue;
+  accent-color: $blue;
 }

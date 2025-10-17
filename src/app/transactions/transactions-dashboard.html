@@ -9,13 +9,32 @@
     </nav>
 </header>
 
-<bold-amount-card
-    title="Total ventas de junio"
-    [amount]="1000323213213123"
-    description="Junio 2025">
-</bold-amount-card>
+<div class="transactions-dashboard-filters">
+    <bold-amount-card
+        title="Total ventas de junio"
+        [amount]="1000323213213123"
+        description="Junio 2025">
+    </bold-amount-card>
 
+    <div class="transactions-dashboard-filters__controls">
+        <bold-segmented-tabs
+            [tabs]="tabs"
+            [selectedTab]="'All'"
+            >
+        </bold-segmented-tabs>
+        <bold-filter-box
+            title="Filtrar"
+            [filters]="filters"
+            >
+        </bold-filter-box>
+    </div>
+
+</div>
+
+<!-- Disabled button as per design 
+ 
 <bold-button label="Enviar" [disabled]="true"> </bold-button>
+-->
 
 <section class="transactions-dashboard-table">
     <div class="transactions-dashboard-table__header bold-base-gradient">
