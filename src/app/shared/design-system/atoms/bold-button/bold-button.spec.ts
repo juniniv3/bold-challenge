@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoldButton } from './bold-button';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('BoldButton', () => {
   let component: BoldButton;
@@ -8,7 +9,8 @@ describe('BoldButton', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BoldButton]
+      imports: [BoldButton],
+      providers: [provideZonelessChangeDetection()],
     })
     .compileComponents();
 

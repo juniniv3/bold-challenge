@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoldPaymentLogo } from './bold-payment-logo';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('BoldPaymentLogo', () => {
   let component: BoldPaymentLogo;
@@ -8,9 +9,9 @@ describe('BoldPaymentLogo', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BoldPaymentLogo]
-    })
-    .compileComponents();
+      imports: [BoldPaymentLogo],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BoldPaymentLogo);
     component = fixture.componentInstance;

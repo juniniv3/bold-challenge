@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MoneyValue } from './money-value';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('MoneyValue', () => {
   let component: MoneyValue;
@@ -8,9 +9,9 @@ describe('MoneyValue', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MoneyValue]
-    })
-    .compileComponents();
+      imports: [MoneyValue],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MoneyValue);
     component = fixture.componentInstance;
