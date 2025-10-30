@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {SidePanel } from './bold-side-panel';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('SidePanel', () => {
   let component: SidePanel;
@@ -8,7 +9,8 @@ describe('SidePanel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidePanel]
+      imports: [SidePanel],
+      providers: [provideZonelessChangeDetection()],
     })
     .compileComponents();
 

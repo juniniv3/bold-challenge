@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoldIcon } from './bold-icon';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('BoldIcon', () => {
   let component: BoldIcon;
@@ -9,6 +10,7 @@ describe('BoldIcon', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BoldIcon],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BoldIcon);

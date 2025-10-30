@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import {  BoldSegmentedTabs} from './bold-segmented-tabs';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('BoldSegmentedTabs', () => {
   let component: BoldSegmentedTabs;
@@ -8,7 +9,8 @@ describe('BoldSegmentedTabs', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BoldSegmentedTabs]
+      imports: [BoldSegmentedTabs],
+      providers: [provideZonelessChangeDetection()],
     })
     .compileComponents();
 
